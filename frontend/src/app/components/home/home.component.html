@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <button mat-icon-button class="menu-button" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>WeThinkCode Hackathon</span>
+  <button mat-icon-button class="menu-button">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container>
+  <mat-drawer #drawer mode="over" [opened]="sideNav">Drawer content</mat-drawer>
+  <mat-drawer-content>Main content</mat-drawer-content>
+
+</mat-drawer-container>
