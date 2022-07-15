@@ -10,7 +10,34 @@
 </mat-toolbar>
 
 <mat-drawer-container>
-  <mat-drawer #drawer mode="over" [opened]="sideNav">Drawer content</mat-drawer>
-  <mat-drawer-content>Main content</mat-drawer-content>
+  <mat-drawer #drawer mode="over" [opened]="sideNav">
+    <a routerLink="/join"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    (click)="drawer.toggle()"
+    mat-icon-button class="nav-item">
+      Join a Hackathon
+    </a>
+
+    <a routerLink="/join"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    (click)="drawer.toggle()"
+    mat-icon-button class="nav-item">
+      Join a Hackathon
+    </a>
+
+    <a routerLink="/join"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    (click)="drawer.toggle()"
+    mat-icon-button class="nav-item">
+      Join a Hackathon
+    </a>
+
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
 
 </mat-drawer-container>

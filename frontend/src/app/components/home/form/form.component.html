@@ -1,1 +1,21 @@
-<p>form works!</p>
+<h1>Apply for 'Hackathon Name here'</h1>
+<form [formGroup]="applyFormGroup">
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select a Hackathon</mat-label>
+    <mat-select [(value)]="hackathon">
+      <mat-option *ngFor="let item of hackathons" [value]="item.title">{{item.title}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br>
+  <button mat-icon-button>
+    Apply
+    <mat-icon>send</mat-icon>
+  </button>
+</form>
