@@ -3,9 +3,8 @@ package za.co.wethinkcode.hackathon.Controllers;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import za.co.wethinkcode.hackathon.Models.Hackathon;
 import za.co.wethinkcode.hackathon.Service.HackathonService;
 
 @RestController
@@ -21,12 +20,19 @@ public class HackathonController {
 
 
     @GetMapping
-    public JSONObject getAllHackathons(){
+    public String getAllHackathons(){
         JSONObject jsonObject = new JSONObject();
         JSONObject hackathonJsonObject = hackathonService.getAllHackathons();
         jsonObject.put("object",hackathonJsonObject);
 
-        return jsonObject;
+        return jsonObject.toString();
+    }
+
+    @PostMapping
+    public String addNewHackathon(@RequestParam("title") String title,@RequestParam("body") String body){
+        Hackathon hackathon = new Hackathon(title,body);
+        hackathonService.addHackathon(hackathon);
+        return "";
     }
 
 }

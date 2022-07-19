@@ -23,9 +23,19 @@ public class HackathonService {
 
 
         List<Hackathon> hackathonList = hackathonRepository.findAll();
+        System.out.println(hackathonList);
 
-        jsonObject.append("hackathons",hackathonList);
+        jsonObject.put("response",hackathonList);
+        System.out.println(jsonObject);
 
+        return jsonObject;
+    }
+
+    public JSONObject addHackathon(Hackathon hackathon){
+        hackathonRepository.save(hackathon);
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.append("response",true);
         return jsonObject;
     }
 }

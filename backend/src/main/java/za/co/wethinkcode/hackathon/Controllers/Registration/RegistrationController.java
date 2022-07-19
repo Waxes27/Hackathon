@@ -48,11 +48,11 @@ public class RegistrationController {
     }
 
 
-    @PostMapping(value = "/login",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto){
+    @PostMapping(value = "/login",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> authenticateUser(@RequestParam("username") String username,@RequestParam("password") String password){
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    loginDto.getEmail(), loginDto.getPassword()));
+                    username, password));
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
             System.out.println("Logging in");
