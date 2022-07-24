@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     formData.append('password', this.loginForm.get('password')?.value);
 
     this.http
-      .post('http://localhost:8080/login', formData)
+      .post('http://waxes27.com:8080/login', formData)
       .subscribe({
         next: (response) => console.log(response),
         error: (error) => console.log(error),

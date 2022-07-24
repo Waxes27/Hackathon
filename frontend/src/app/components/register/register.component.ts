@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     formData.append('email', this.registrationForm.get('username')?.value + "@student.wethinkcode.co.za");
 
     this.http
-      .post('http://localhost:8080/registration', formData)
+      .post('http://waxes27.com:8080/registration', formData)
       .subscribe({
         next: (response) => console.log(response),
         error: (error) => console.log(error),
