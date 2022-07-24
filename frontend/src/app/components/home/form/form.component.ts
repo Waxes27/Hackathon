@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -26,9 +27,13 @@ export class FormComponent implements OnInit {
     },
   ]
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get("http://localhost:8080/api/v1/hackathon").subscribe({
+      next: (response )=>{console.log(response)},
+      error: (response)=>{console.log(response)}
+    })
   }
 
   getErrorMessage() {

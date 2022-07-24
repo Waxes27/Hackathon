@@ -18,6 +18,10 @@ import {BrowserAnimationsModule} from
     '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './components/register/register.component';
 
 
 
@@ -29,7 +33,10 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HomeComponent,
     ButtonComponent,
-    FormComponent
+    FormComponent,
+    LoginComponent,
+    DashboardComponent,
+    RegisterComponent
   ],
   imports: [
     MatInputModule,
@@ -44,7 +51,8 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
 
   ],
   bootstrap: [AppComponent]

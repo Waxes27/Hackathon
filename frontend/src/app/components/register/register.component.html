@@ -1,0 +1,22 @@
+<h1>Register For Hackathon's Platform</h1>
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+
+    <mat-form-field appearance="fill">
+      <mat-label >Username</mat-label>
+      <input matInput formControlName="username">
+    </mat-form-field>
+    <br>
+  
+    <mat-form-field appearance="fill">
+      <mat-label >Password</mat-label>
+      <input matInput formControlName="password">
+    </mat-form-field>
+  
+    <br>
+    <button mat-icon-button>
+      Register
+      <mat-icon>send</mat-icon>
+    </button>
+</form>

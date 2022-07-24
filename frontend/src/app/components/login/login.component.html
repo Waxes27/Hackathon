@@ -1,0 +1,27 @@
+<h1>Login to WeThinkCode Hackathons</h1>
+<form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+  <mat-form-field appearance="fill">
+    <mat-label >Username</mat-label>
+    <input matInput formControlName="username">
+  </mat-form-field>
+  <br>
+
+  <mat-form-field appearance="fill">
+    <mat-label >Password</mat-label>
+    <input matInput formControlName="password">
+  </mat-form-field>
+
+  <br>
+  <button mat-icon-button>
+    login
+    <mat-icon>send</mat-icon>
+  </button>
+
+
+  <a routerLink="/register">
+    No account, register here.
+  </a>
+  
+</form>
