@@ -11,11 +11,14 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import za.co.wethinkcode.hackathon.LoginDto;
 import za.co.wethinkcode.hackathon.Models.User;
+import za.co.wethinkcode.hackathon.Models.enums.AppUserRole;
 import za.co.wethinkcode.hackathon.Request.RegistrationRequest;
 import za.co.wethinkcode.hackathon.Service.AppUserService;
+import za.co.wethinkcode.hackathon.Service.RegistrationService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -28,19 +31,40 @@ public class RegistrationController {
     @Autowired
     private AuthenticationManager authenticationManager;
     private AppUserService service;
+    private RegistrationService registrationService;
 
 
-    @PostMapping(path = "/registration",produces = MediaType.APPLICATION_JSON_VALUE)
-    public String register(@RequestBody RegistrationRequest request, HttpServletResponse response){
+
+    @PostMapping(path = "/registration",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String register(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            @RequestParam("email") String email, HttpServletResponse response){
+
+        RegistrationRequest request = new RegistrationRequest("",username,email,password, "USER");
         try {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             User user = new User(
                     request.getUserName(),
-                    request.getPassword(),
+                    passwordEncoder.encode(request.getPassword()),
                     request.getEmail(),
                     request.getUserRole());
             createCookie(response,user);
 
-            return "";
+            registrationService.registerUser(user);
+//            try {
+//                Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+//                        username, password));
+//
+//                SecurityContextHolder.getContext().setAuthentication(authentication);
+//                System.out.println("Logging in");
+////                return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
+//
+//            }catch (DisabledException e){
+////                return new ResponseEntity<>("User has not verified email", HttpStatus.FORBIDDEN);
+//            }
+
+            return user.toString();
         }catch (IllegalStateException e){
             return "";
         }

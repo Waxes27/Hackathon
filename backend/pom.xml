@@ -10,11 +10,11 @@
 	</parent>
 	<groupId>za.co.wethinkcode</groupId>
 	<artifactId>hackathon</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>hackathon</name>
 	<description>Spring backend for WeThinkCode Hackathons</description>
 	<properties>
-		<java.version>15</java.version>
+		<java.version>11</java.version>
 		<testcontainers.version>1.17.3</testcontainers.version>
 	</properties>
 	<dependencies>

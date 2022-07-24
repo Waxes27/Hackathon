@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.json.JSONObject;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -79,13 +80,14 @@ public class User implements UserDetails {
 
     @Override
     public String toString() {
-        return "User{" +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", userRole=" + userRole +
-                ", locked=" + locked +
-                ", enabled=" + enabled +
-                '}';
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username",username);
+        jsonObject.put("password",password);
+        jsonObject.put("email",email);
+        jsonObject.put("userRole",userRole);
+        jsonObject.put("locked",locked);
+        jsonObject.put("enabled",enabled);
+
+        return jsonObject.toString();
     }
 }
